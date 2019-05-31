@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LoginMapper">
+	<select id="selectOutputs" resultType="JJH.Outputs">
+		select * from outputs
+	</select>
+	<select id="selectOutputs2" resultType="JJH.Outputs2">
+		select * from outputs2
+	</select>
+	<delete id="deleteIteminfoCondition"
+		parameterType="HashMap">
+		delete from Customer_info
+		<where>
+			<if test="Customer_ID != null">and Customer_ID=#{Customer_ID}</if>
+			<if test="Customer_name != null">and Customer_name=#{Customer_name}</if>
+			<if test="Customer_PWD != null">and Customer_PWD=#{Customer_PWD}</if>
+			<if test="Customer_gender != null">and Customer_gender=#{Customer_gender}</if>
+			<if test="Customer_mail != null">and Customer_mail=#{Customer_mail}</if>
+			<if test="Customer_phone != null">and Customer_phone=#{Customer_phone}</if>
+			<if test="Customer_age != null">and Customer_age=#{Customer_age}</if>
+		</where>
+	</delete>
+	<!-- 조건 조회 -->
+	<select id="selectIteminfoCondition" parameterType="HashMap"
+		resultType="JJH.Customer_info">
+		select * from Customer_info
+		<where>
+			<if test="Customer_ID != null"> and Customer_ID=#{Customer_ID}
+			</if>
+		</where>
+	</select>
+	<select id="selectAllIteminfo" resultType="JJH.Customer_info">
+		select * from Customer_info
+	</select>
+	
+	<select id="selectidIteminfo" resultType="JJH.Customer_info">
+		select * from Customer_info where Customer_ID=#{Customer_ID}
+	</select>
+	
+	
+	<select id="selectAllCustomer"
+		resultType="JJH.Customer_info">
+		select * from Customer_info
+	</select>
+</mapper>
